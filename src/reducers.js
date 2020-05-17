@@ -23,7 +23,7 @@ export const searchRobots = (state = initialStateSearch, action = {}) => {
 
 const initialStateRobots = {
   robots: [],
-  isPending: false,
+  isPending: true,
   error: ''
 };
 
@@ -34,7 +34,7 @@ export const requestRobots = (state = initialStateRobots, action = {}) => {
     case REQUEST_ROBOTS_SUCCESS:
       return { ...state, isPending: false, robots: action.payload };
     case REQUEST_ROBOTS_FAILED:
-      return { ...state, isPending: false, error: action.payload };
+      return { ...state, error: action.payload };
     default:
       return state;
   }

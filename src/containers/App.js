@@ -18,22 +18,25 @@ class App extends React.Component {
 
   render() {
     const { searchField, onSearchChange, robots, isPending } = this.props;
+    console.log('isPending', isPending);
     const filteredRobots = robots.filter(robot => {
       return robot.name
         .toLocaleLowerCase()
         .includes(searchField.toLocaleLowerCase());
     });
 
-    return isPending ? (
-      <h1>Loading</h1>
-    ) : (
+    return (
       <div className='tc'>
         <Header />
         <SearchBox searchChange={onSearchChange} />
         <Scroll>
-          <ErrorBoundary>
-            <CartList robots={filteredRobots} />;
-          </ErrorBoundary>
+          {isPending ? (
+            <h1>Loading</h1>
+          ) : (
+            <ErrorBoundary>
+              <CartList robots={filteredRobots} />
+            </ErrorBoundary>
+          )}
         </Scroll>
       </div>
     );
